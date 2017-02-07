@@ -982,7 +982,7 @@
 				TargetAttributes = {
 					280B28371C1C8930006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CMM2K3BKQF;
+						DevelopmentTeam = B598AEF9ZM;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -995,12 +995,12 @@
 					};
 					280B28671C1C8977006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CMM2K3BKQF;
+						DevelopmentTeam = HHS94TKB2U;
 						LastSwiftMigration = 0810;
 					};
 					280B287C1C1C89BE006E17B6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CMM2K3BKQF;
+						DevelopmentTeam = B598AEF9ZM;
 						LastSwiftMigration = 0810;
 					};
 					28C91E4F1CA709C600D45750 = {
@@ -1435,7 +1435,6 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1452,7 +1451,7 @@
 					"$(PROJECT_DIR)/Connect-SDK-iOS/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.Fetch-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.Fetch-1486493282-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
@@ -1469,7 +1468,6 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1485,7 +1483,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Connect-SDK-iOS/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.Fetch-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.Fetch-1486493282-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fetch/Fetch-Bridging-Header.h";
@@ -1501,7 +1499,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
+				DEVELOPMENT_TEAM = HHS94TKB2U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1510,7 +1508,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.SRBarcodeScanner-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1528,7 +1526,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
+				DEVELOPMENT_TEAM = HHS94TKB2U;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1537,7 +1535,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.SRBarcodeScanner-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.SRBarcodeScanner-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1555,7 +1553,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1569,7 +1566,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.PutioKit-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit-1486493282-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1587,7 +1584,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = CMM2K3BKQF;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1601,7 +1597,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.getfetchapp.PutioKit-1486493282-1486493240";
+				PRODUCT_BUNDLE_IDENTIFIER = com.getfetchapp.PutioKit-1486493282-1486493240;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
