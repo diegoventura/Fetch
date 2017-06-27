@@ -9,18 +9,18 @@
 import UIKit
 import Alamofire
 
-public class Feed {
+open class Feed {
     
-    public var id: Int?
+    open var id: Int?
     
-    public var title: String?
+    open var title: String?
     
-    public var paused: Bool?
+    open var paused: Bool?
     
     /**
      Pause the feed and cease automatic downloading of files
      */
-    public func pause() {
+    open func pause() {
         if let id = self.id {
             Putio.post("rss/\(id)/pause", callback: nil)
         }
@@ -29,7 +29,7 @@ public class Feed {
     /**
      Resume the feed and continue automatic downloading of files
      */
-    public func resume() {
+    open func resume() {
         if let id = self.id {
             Putio.post("rss/\(id)/resume", callback: nil)
         }
@@ -38,7 +38,7 @@ public class Feed {
     /**
      Delete the feed
      */
-    public func delete() {
+    open func delete() {
         if let id = self.id {
             Putio.post("rss/\(id)/delete", callback: nil)
         }

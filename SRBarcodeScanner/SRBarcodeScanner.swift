@@ -9,34 +9,34 @@
 import UIKit
 import AVFoundation
 
-public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
+open class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     
     /// Delegate where we can fire off all the notifications to
-    public var delegate: SRBarcodeScannerDelegate?
+    open var delegate: SRBarcodeScannerDelegate?
     
     /// The capture session that will let us launch the camera
     let captureSession = AVCaptureSession()
     
     /// The capture device we're gonna be using. This will be the back camera by default.
-    public var captureDevice: AVCaptureDevice?
+    open var captureDevice: AVCaptureDevice?
     
     /// The output we're gonna capture
-    public var captureOutput: AVCaptureMetadataOutput?
+    open var captureOutput: AVCaptureMetadataOutput?
     
     /// This layer displays the current video capture session
-    public var previewLayer: AVCaptureVideoPreviewLayer!
+    open var previewLayer: AVCaptureVideoPreviewLayer!
     
     /// This is the highlight view layer that is primarily for debugging purposes
-    public var highlightView = UIView()
+    open var highlightView = UIView()
     
     /// Does the camera have a back camera?
-    public class var hasBackCamera: Bool {
+    open class var hasBackCamera: Bool {
         get {
             var haveCamera = false
             let devices = AVCaptureDevice.devices()
-            for device in devices {
-                if device.hasMediaType(AVMediaTypeVideo) {
-                    if device.position == .Back {
+            for device in devices! {
+                if (device as AnyObject).hasMediaType(AVMediaTypeVideo) {
+                    if (device as AnyObject).position == .back {
                         haveCamera = true
                     }
                 }
@@ -59,11 +59,11 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     // MARK: - Capture Session
     
     /// Setup the capture session by creating the capture device and adding it to the session
-    public func setupCaptureSession() {
+    open func setupCaptureSession() {
         
         // Check if we have a back camera and then set it as the device
         if SRBarcodeScanner.hasBackCamera {
-            captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         }
         
         // Create I/O
@@ -92,7 +92,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     /// Create the device output
     func createOutput() {
         captureOutput = AVCaptureMetadataOutput()
-        captureOutput!.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        captureOutput!.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         captureSession.addOutput(captureOutput!)
         
         // See: https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVMetadataMachineReadableCodeObject_Class/index.html#//apple_ref/doc/constant_group/Machine_Readable_Object_Types
@@ -115,7 +115,7 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     /// Create the highlight view
     func setupHighlightView() {
         highlightView.layer.borderWidth = 2
-        highlightView.layer.borderColor = UIColor.redColor().CGColor
+        highlightView.layer.borderColor = UIColor.red.cgColor
         addSubview(highlightView)
     }
     
@@ -123,13 +123,13 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     // MARK: - Actions
     
     /// Start scanning barcodes
-    public func startScanning() {
+    open func startScanning() {
         captureSession.startRunning()
         delegate?.scanningStarted?()
     }
     
     /// Stop scanning barcodes
-    public func stopScanning() {
+    open func stopScanning() {
         captureSession.stopRunning()
         delegate?.scanningStopped?()
     }
@@ -137,10 +137,10 @@ public class SRBarcodeScanner: UIView, AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - AVCaptureMetadataOutputObjectsDelegate
     
-    public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    open func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         if metadataObjects.count > 0 {
-            let string = metadataObjects[0].stringValue as String
+            let string = (metadataObjects[0] as AnyObject).stringValue as String
             delegate?.foundBarcode?(string)
         }
         

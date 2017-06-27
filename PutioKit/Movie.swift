@@ -11,55 +11,55 @@ import RealmSwift
 import Alamofire
 import AlamofireImage
 
-public class Movie: Object, MediaType {
+open class Movie: Object, MediaType {
     
-    public dynamic var id: Int = 0
+    open dynamic var id: Int = 0
     
     /// URL to the backdrop on the API
-    public dynamic var backdropURL: String?
+    open dynamic var backdropURL: String?
     
     /// URL to the poster on the API
-    public dynamic var posterURL: String?
+    open dynamic var posterURL: String?
     
-    public dynamic var title: String?
+    open dynamic var title: String?
     
-    public let genres = List<Genre>()
+    open let genres = List<Genre>()
     
-    public dynamic var overview: String?
+    open dynamic var overview: String?
     
-    public dynamic var releaseDate: String?
+    open dynamic var releaseDate: String?
     
-    public dynamic var runtime: Float64 = 0
+    open dynamic var runtime: Float64 = 0
 
-    public dynamic var tagline: String?
+    open dynamic var tagline: String?
     
-    public dynamic var voteAverage: Float64 = 0
+    open dynamic var voteAverage: Float64 = 0
     
     /// Putio Files
-    public let files = List<File>()
+    open let files = List<File>()
     
-    override public static func primaryKey() -> String? {
+    override open static func primaryKey() -> String? {
         return "id"
     }
     
     
     // MARK: - Non-realm
     
-    public var poster: UIImage?
+    open var poster: UIImage?
     
     /// Title to sort alphabetically witout "The"
-    public var sortableTitle: String? {
+    open var sortableTitle: String? {
         get {
-            if let range = title?.rangeOfString("The ") {
-                if range.startIndex == title?.startIndex {
-                    return title?.stringByReplacingCharactersInRange(range, withString: "")
+            if let range = title?.range(of: "The ") {
+                if range.lowerBound == title?.startIndex {
+                    return title?.replacingCharacters(in: range, with: "")
                 }
             }
             return title
         }
     }
     
-    override public static func ignoredProperties() -> [String] {
+    override open static func ignoredProperties() -> [String] {
         return ["poster"]
     }
     

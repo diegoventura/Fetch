@@ -12,44 +12,44 @@ import KeychainAccess
 import Alamofire
 import SwiftyJSON
 
-public class Putio {
+open class Putio {
     
     /// The reference to the Put.io API
-    public static let api = "https://api.put.io/v2/"
+    open static let api = "https://api.put.io/v2/"
     
     /// The client ID used to authenticate with Put.io
-    public static let clientId = 2023
+    open static let clientId = 2023
     
     /// The keychain we're using
-    public static let keychain = Keychain(service: "uk.co.wearecocoon.fetch")
+    open static let keychain = Keychain(service: "uk.co.wearecocoon.fetch")
     
     /// The shared realm instance
-    public static let realm = try! Realm()
+    open static let realm = try! Realm()
     
     /// The access token stored in keychain after we logged in
-    public static var accessToken: String? {
+    open static var accessToken: String? {
         get {
             return keychain["access_token"]
         }
     }
     
-    public static let sharedInstance = Putio()
+    open static let sharedInstance = Putio()
     
-    public var delegate: PutioDelegate?
+    open var delegate: PutioDelegate?
     
-    public static let secret = "1E6p8Mlh9PfGrtZH0UUNArC252FX74FO"
+    open static let secret = "1E6p8Mlh9PfGrtZH0UUNArC252FX74FO"
     
     // TODO: Remove as it's now an extension
-    public static let accent = UIColor(red:0.98, green:0.77, blue:0.21, alpha:1)
+    open static let accent = UIColor(red:0.98, green:0.77, blue:0.21, alpha:1)
     
     /**
      Helper method to set the network activity indicator. This will only show/hide the indicator on iOS and will silently fail on tvOS.
      
      - parameter yn: Whether to show the indicator or not
      */
-    public class func networkActivityIndicatorVisible(yn: Bool) {
+    open class func networkActivityIndicatorVisible(_ yn: Bool) {
         #if os(iOS)
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = yn
+            UIApplication.shared.isNetworkActivityIndicatorVisible = yn
         #endif
     }
     
@@ -62,20 +62,20 @@ public class Putio {
     - parameter endpoint: The endpoint to call
     - parameter callback: Optional callback
     */
-    public class func get(endpoint: String, parameters: [String:AnyObject] = [:], callback: ((JSON?, NSError?) -> Void)?) {
+    open class func get(_ endpoint: String, parameters: [String:Any] = [:], callback: ((JSON?, NSError?) -> Void)?) {
         
         self.networkActivityIndicatorVisible(true)
         
         var params = parameters
-        params["oauth_token"] = "\(self.accessToken!)"
+        params["oauth_token"] = "\(self.accessToken!)" as AnyObject
         
-        Alamofire.request(.GET, "\(self.api)\(endpoint)", parameters: params)
+        Alamofire.request("\(self.api)\(endpoint)", method: .get, parameters: params)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 
                 self.networkActivityIndicatorVisible(false)
                 
-                if let code = response.response?.statusCode where response.result.isFailure {
+                if let code = response.response?.statusCode, response.result.isFailure {
                     if case 400..<404 = code {
                         Putio.sharedInstance.delegate?.error400Received()
                     }
@@ -83,7 +83,7 @@ public class Putio {
                 
                 if let cb = callback {
                     if response.result.error != nil {
-                        cb(nil, response.result.error)
+                        cb(nil, response.result.error! as NSError)
                     } else if let data = response.result.value {
                         let json = JSON(data)
                         cb(json, nil)
@@ -102,7 +102,7 @@ public class Putio {
      - parameter endpoint: Endpoint to call
      - parameter callback: Optional callback
      */
-    public class func post(endpoint: String, callback: ((JSON?, NSError?) -> Void)?) {
+    open class func post(_ endpoint: String, callback: ((JSON?, NSError?) -> Void)?) {
         self.post(endpoint, parameters: [:], callback: callback)
     }
     
@@ -113,7 +113,7 @@ public class Putio {
      - parameter params:   Parameters to POST
      - parameter callback: Optional callback
      */
-    public class func post(endpoint: String, parameters params: [String:String], callback: ((JSON?, NSError?) -> Void)?) {
+    open class func post(_ endpoint: String, parameters params: [String:String], callback: ((JSON?, NSError?) -> Void)?) {
         
         var params = params
         
@@ -121,13 +121,13 @@ public class Putio {
         
         params["oauth_token"] = self.accessToken!
         
-        Alamofire.request(.POST, "\(self.api)\(endpoint)", parameters: params)
+        Alamofire.request("\(self.api)\(endpoint)", method: .post, parameters: params)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 
                 self.networkActivityIndicatorVisible(false)
                 
-                if let code = response.response?.statusCode where response.result.isFailure {
+                if let code = response.response?.statusCode, response.result.isFailure {
                     if case 400..<404 = code {
                         Putio.sharedInstance.delegate?.error400Received()
                     }
@@ -135,7 +135,7 @@ public class Putio {
                 
                 if let cb = callback {
                     if response.result.error != nil {
-                        cb(nil, response.result.error)
+                        cb(nil, response.result.error! as NSError)
                     } else if let data = response.result.value {
                         let json = JSON(data)
                         cb(json, nil)

@@ -9,15 +9,15 @@
 import Foundation
 import RealmSwift
 
-public class Genre: Object {
+open class Genre: Object {
     
     /// The id of the genre
-    public dynamic var id: Int = 0
+    open dynamic var id: Int = 0
     
     /// The name of the genre
-    public dynamic var name: String? = nil
+    open dynamic var name: String? = nil
     
-    override public static func primaryKey() -> String? {
+    override open static func primaryKey() -> String? {
         return "id"
     }
     

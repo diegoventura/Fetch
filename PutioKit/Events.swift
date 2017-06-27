@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Events {
+open class Events {
     
-    public class func get(callback: ([NSDate:[Event]], NSError?) -> Void) {
+    open class func get(_ callback: @escaping ([Date:[Event]], NSError?) -> Void) {
         
         Putio.get("events/list") { json, error in
             
-            var sorted = [NSDate:[Event]]()
+            var sorted = [Date:[Event]]()
             if let j = json {
                 
                 if let rawEvents = j["events"].array {
@@ -25,23 +25,23 @@ public class Events {
                             switch type {
                                 case "zip_created":
                                     event.name = "You requested we zip some files and they are ready"
-                                    event.type = .ZipCreated
+                                    event.type = .zipCreated
                                     event.fileID = e["file_id"].int32
                                 case "transfer_from_rss_error":
                                     event.name = e["transfer_name"].string
-                                    event.type = .TransferFromRSSError
+                                    event.type = .transferFromRSSError
                                 case "file_shared":
                                     event.name = e["file_name"].string
-                                    event.type = .FileShared
+                                    event.type = .fileShared
                                     event.fileID = e["file_id"].int32
                                 default:
                                     event.name = e["transfer_name"].string
-                                    event.type = .TransferCompleted
+                                    event.type = .transferCompleted
                                     event.fileID = e["file_id"].int32
                             }
                         } else {
                             event.name = e["transfer_name"].string
-                            event.type = .TransferFromRSSError
+                            event.type = .transferFromRSSError
                         }
                         
                         event.createdAt = e["created_at"].string
@@ -50,12 +50,12 @@ public class Events {
                     }
                     
                     
-                    let formatter = NSDateFormatter()
+                    let formatter = DateFormatter()
                     formatter.dateFormat = "dd/MM/yyyy"
                     for event in events {
                         if let date = event.date {
-                            let dateString = formatter.stringFromDate(date)
-                            let newDate = formatter.dateFromString(dateString)!
+                            let dateString = formatter.string(from: date)
+                            let newDate = formatter.date(from: dateString)!
                             if sorted[newDate] == nil {
                                 sorted[newDate] = []
                             }
@@ -74,7 +74,7 @@ public class Events {
         
     }
     
-    public class func clear(callback: () -> Void) {
+    open class func clear(_ callback: @escaping () -> Void) {
         Putio.post("events/delete") { json, error in
             callback()
         }

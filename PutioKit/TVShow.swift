@@ -10,57 +10,57 @@ import Downpour
 import RealmSwift
 import Alamofire
 
-public class TVShow: Object, MediaType {
+open class TVShow: Object, MediaType {
     
     // MARK: - Realm Properties
     
     /// The TV Show ID
-    public dynamic var id: Int = 0
+    open dynamic var id: Int = 0
 
     /// URL to the poster on the API
-    public dynamic var posterURL: String?
+    open dynamic var posterURL: String?
     
     /// The name of the TV Show
-    public dynamic var title: String?
+    open dynamic var title: String?
     
     /// Description of the TV Show
-    public dynamic var overview: String?
+    open dynamic var overview: String?
     
     /// voting average of the tv show
-    public dynamic var voteAverage: Float64 = 0
+    open dynamic var voteAverage: Float64 = 0
     
     /// TV show genre
-    public let genres = List<Genre>()
+    open let genres = List<Genre>()
     
     /// Putio Files
-    public let files = List<File>()
+    open let files = List<File>()
     
     /// TV Seasons
-    public let seasons = List<TVSeason>()
+    open let seasons = List<TVSeason>()
     
-    override public static func primaryKey() -> String? {
+    override open static func primaryKey() -> String? {
         return "id"
     }
     
     
     // MARK: - Non-Realm Properties
     
-    override public static func ignoredProperties() -> [String] {
+    override open static func ignoredProperties() -> [String] {
         return ["poster", "delegate", "requests", "completed"]
     }
     
     /// The poster image
-    public var poster: UIImage?
+    open var poster: UIImage?
     
     /// Delegate for the TVShow
-    public var delegate: TVShowDelegate?
+    open var delegate: TVShowDelegate?
     
     /// Title to sort alphabetically witout "The"
-    public var sortableTitle: String? {
+    open var sortableTitle: String? {
         get {
-            if let range = title?.rangeOfString("The ") {
-                if range.startIndex == title?.startIndex {
-                    return title?.stringByReplacingCharactersInRange(range, withString: "")
+            if let range = title?.range(of: "The ") {
+                if range.lowerBound == title?.startIndex {
+                    return title?.replacingCharacters(in: range, with: "")
                 }
             }
             return title
@@ -69,9 +69,9 @@ public class TVShow: Object, MediaType {
     
     var requests = 0
     
-    private var completed = 0
+    fileprivate var completed = 0
     
-    public var completedPercent: Float {
+    open var completedPercent: Float {
         get {
             return (Float(self.completed) / Float(self.files.count))
         }
@@ -83,7 +83,7 @@ public class TVShow: Object, MediaType {
     /**
      Convert the files to TV Episodes
      */
-    public func convertFilesToEpisodes() {
+    open func convertFilesToEpisodes() {
         
         guard seasons.count == 0 else {
             self.delegate?.tvEpisodesLoaded()

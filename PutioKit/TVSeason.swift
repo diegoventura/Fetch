@@ -9,16 +9,16 @@
 import Foundation
 import RealmSwift
 
-public class TVSeason: Object {
+open class TVSeason: Object {
     
-    public dynamic var id: Int = 0
+    open dynamic var id: Int = 0
     
-    public dynamic var number: Int = 0
+    open dynamic var number: Int = 0
     
     /// Episodes of the tv season
-    public let episodes = List<TVEpisode>()
+    open let episodes = List<TVEpisode>()
     
-    override public static func primaryKey() -> String? {
+    override open static func primaryKey() -> String? {
         return "id"
     }
     
